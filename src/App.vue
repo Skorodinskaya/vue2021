@@ -13,7 +13,9 @@
   <br>
 
   <button @click="isVisible = !isVisible">toggle list visibility</button>
-  <Test v-if="isVisible" :items="items" @removeItem="removeItemFromList"/>
+
+
+  <Test v-if="isVisible" :items="filteredItems" @removeItem="removeItemFromList"/>
   <h1 v-else-if="!isVisible && counter === 0">Some strange condition</h1>
   <h1 v-else>List is hidden</h1>
 
@@ -23,6 +25,8 @@
   <div :class="{test: counter % 2 !== 0}">counter value: {{ counter }}
   </div>
   <button @click="incCounter($event, 123321)">inc</button>
+
+  <router-view></router-view>
 </template>
 
 <script>
@@ -67,7 +71,11 @@ export default {
     }
   },
   methods: {
-    onSubmit(){
+    filteredItemsMethod() {
+    return this.items.filter((el, i) => i % 2 === 0);
+    },
+
+    onSubmit() {
       console.log(this.inputValue, this.isVisible)
     },
 
@@ -75,9 +83,7 @@ export default {
       this.items = this.items.filter(item => item.id !== id)
     },
 
-    incCounter(event) {
-      console.log(event)
-      console.log(this)
+    incCounter() {
       this.counter++
 
       this.user.name += '!'
@@ -95,6 +101,12 @@ export default {
 
   components: {
     Test
+  },
+
+  computed: {
+    filteredItems() {
+      return this.items.filter((el, i) => i % 2 === 0)
+    }
   }
 }
 </script>

@@ -1,8 +1,4 @@
 <template>
-  <!--  <h1>Current count value: {{$store.state.count}}</h1>-->
-  <!--  <h1>Current multiplied count value: {{$store.getters.multipliedCounter}}</h1>-->
-
-  <!--  <button @click="incCounter">inc</button>-->
   <Header></Header>
   <router-view></router-view>
 </template>
@@ -12,17 +8,7 @@ import Header from "@/components/Header";
 
 export default {
   name: 'App',
-  components: {
-    Header
-  },
-  created() {
-    console.log(this.$store.state.count)
-  },
-  methods: {
-    incCounter() {
-      this.$store.dispatch('increment', 123)
-    }
-  }
+  components: {Header}
 }
 </script>
 

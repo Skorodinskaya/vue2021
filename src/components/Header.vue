@@ -1,7 +1,7 @@
 <template>
   <header>
     <div>
-      <span>Welcome to our shop!</span>
+      <span>Welcome to the shop!</span>
       <router-link class="link" to="/">Products</router-link>
     </div>
   </header>
